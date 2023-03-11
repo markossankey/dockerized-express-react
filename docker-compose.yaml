@@ -1,0 +1,25 @@
+services:
+  express-api:
+    build:
+      context: ./backend
+    volumes:
+      - "./backend:/build"
+      - "/build/node_modules"
+    restart: always
+
+  react-frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - "./frontend:/build"
+      - "/build/node_modules"
+    restart: always
+
+  nginx:
+    depends_on:
+      - react-frontend
+      - express-api
+    restart: always
+    build:
+      context: ./nginx
+    ports: ["3050:80"]
