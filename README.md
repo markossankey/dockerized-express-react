@@ -1,1 +1,3 @@
-# dockerized-express-react
+# To get in running
+
+- `$ docker-compose up`
